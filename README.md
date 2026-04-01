@@ -47,3 +47,39 @@ BIGDATA-PROJECT/
 │   └── transportation/                  # Lokasi file JSON sementara sebelum diproses
 ├── .gitignore
 └── README.md
+```
+
+⚙️ Cara Menjalankan Proyek (Smart Transportation)
+Pastikan Python 3 sudah terinstal dan jalankan proyek ini di dalam Virtual Environment (venv).
+
+1. Install Dependencies
+
+```Bash
+pip install pandas pyspark streamlit pyarrow
+```
+2. Jalankan Data Generator (Terminal 1)
+Terminal ini akan bertindak sebagai pabrik data yang mensimulasikan perjalanan baru setiap 3 detik.
+
+```Bash
+python scripts/transportation/trip_generator.py
+```
+3. Jalankan Streaming Processor (Terminal 2)
+Buka terminal baru. Script ini akan menangkap file JSON yang dihasilkan Generator, memprosesnya, dan menyimpannya ke Data Lake dalam format .parquet.
+
+```Bash
+python scripts/transportation/streaming_trip_layer.py
+```
+4. Jalankan Real-Time Dashboard (Terminal 3)
+Buka terminal baru. Script ini akan membaca data dari Parquet dan merendernya ke dalam Dashboard web interaktif secara terus-menerus.
+
+```Bash
+python -m streamlit run dashboard/dashboard_transportation.py
+```
+📊 Fitur Dashboard (Modul 5)
+- Live Metrics: Menampilkan Total Trips, Total Fare, dan Top Location.
+- Decision Alerts: Deteksi otomatis volume traffic tinggi dan tarif abnormal.
+- Visualisasi Dinamis: Bar chart distribusi kendaraan dan pendapatan per kota.
+- Anomaly Detection: Tabel khusus yang menyaring trip dengan tarif yang mencurigakan.
+- Live Data Feed: Tabel raw data yang terus diperbarui setiap 5 detik.
+
+*Dibuat untuk memenuhi tugas praktikum Big Data Technology - 2026*
