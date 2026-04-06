@@ -84,3 +84,12 @@ def detect_anomaly(df):
         return pd.DataFrame()
     # Contoh: Tarif di atas Rp 80.000 dianggap anomali/mencurigakan
     return df[df["fare"] > 80000]
+
+def traffic_per_window(df):
+    if df.empty:
+        return None
+    # Pastikan kolom timestamp berformat datetime
+    df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce")
+    
+    # Kelompokkan data per 1 menit dan hitung jumlah perjalanannya
+    return df.set_index("timestamp").resample("1min").size()
