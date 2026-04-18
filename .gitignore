@@ -1,0 +1,15 @@
+# Mengabaikan folder environment dan cache
+venv/
+__pycache__/
+.pytest_cache/
+
+# Mengabaikan data mentah dan hasil olahan
+data/
+stream_data/
+*.parquet
+*.csv
+*.json
+
+# Mengabaikan model AI yang ukurannya besar
+models/
+*.pkl
