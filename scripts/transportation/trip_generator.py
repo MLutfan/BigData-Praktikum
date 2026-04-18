@@ -28,4 +28,4 @@ while True:
         
     print("Generated Trip:", data)
     i += 1
-    time.sleep(3) # Jeda 0.1 detik
+    time.sleep(3) # Jeda 3 detik
